@@ -15,7 +15,7 @@ void setup() {
   ledcAttachPin(PWM_LED_PIN, LEDC_CHANNEL);
 
   // Setting the interrupt pin!!
-  attachInterrupt(digitalPinToInterrupt(Button_Pin), buttonISR, FALLING); 
+  attachInterrupt(digitalPinToInterrupt(Button_Pin), buttonISR, CHANGE); // Detect both press and release
 
   // Initialize button
   pinMode(Button_Pin, INPUT);  // No need for PULLUP
