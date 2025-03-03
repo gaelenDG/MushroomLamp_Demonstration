@@ -9,7 +9,7 @@ using namespace std;
 
 // ======== GPIO Pin Definitions ========
 const int Button_Pin = 0;  // Define the GPIO pin for the button
-const int LED_Strand = 1; // Define GPIO pin for the LED strand
+const int POT = 1; 
 
 // ======== NeoPixel Definitions ========
 Adafruit_NeoPixel StatusLight(1, 10, NEO_GRB + NEO_KHZ800);
@@ -41,12 +41,12 @@ unsigned long pressStartTime = 0;
 bool buttonHeld = false;
 volatile unsigned long lastPressTime = 0;  // Track last button press time
 
-// LED strand
+// // LED strand
 
-const int LEDC_CHANNEL = 0;     // Use PWM channel 0
-const int LEDC_TIMER_BIT = 8;   // 8-bit resolution (0-255)
-const int LEDC_BASE_FREQ = 5000; // 5 kHz frequency
-const int PWM_LED_PIN = 1;      // GPIO pin for the LED
+// const int LEDC_CHANNEL = 0;     // Use PWM channel 0
+// const int LEDC_TIMER_BIT = 8;   // 8-bit resolution (0-255)
+// const int LEDC_BASE_FREQ = 5000; // 5 kHz frequency
+// const int PWM_LED_PIN = 1;      // GPIO pin for the LED
 
 // Color options
 

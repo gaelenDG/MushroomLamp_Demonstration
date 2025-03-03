@@ -8,13 +8,14 @@
 extern Adafruit_NeoPixel StatusLight;
 extern Adafruit_NeoPixel NeoPixel_Chain;
 
-// ======== Button and Pattern Declarations ========
+// ======== Button, GPIO, and Pattern Declarations ========
 extern int patternIndex;
 extern bool buttonPressed;
 extern unsigned long buttonPressTime;
 extern const int Button_Pin;  // GPIO pin for the button
 extern const int longPressDuration; // Long press duration in milliseconds
 extern const int LED_Strand; // GPIO pin for the strand LED
+extern const int POT; // GPIO pin for the potentiometer
 
 extern volatile unsigned long lastDebounceTime; // Stores last button press time
 extern const unsigned long debounceDelay;  // Minimum delay in ms to avoid multiple counts

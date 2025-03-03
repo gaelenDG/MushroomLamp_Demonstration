@@ -10,9 +10,9 @@ using namespace std;
 
 void setup() {
 
-  // Initialize strand LED
-  ledcSetup(LEDC_CHANNEL, LEDC_BASE_FREQ, LEDC_TIMER_BIT);
-  ledcAttachPin(PWM_LED_PIN, LEDC_CHANNEL);
+  // // Initialize strand LED
+  // ledcSetup(LEDC_CHANNEL, LEDC_BASE_FREQ, LEDC_TIMER_BIT);
+  // ledcAttachPin(PWM_LED_PIN, LEDC_CHANNEL);
 
   // Setting the interrupt pin!!
   attachInterrupt(digitalPinToInterrupt(Button_Pin), buttonISR, CHANGE); // Detect both press and release
@@ -38,6 +38,7 @@ void setup() {
 
 // ======== Loop ========
 void loop() {
+
   if (lampSleep) {
     setPattern();
   }

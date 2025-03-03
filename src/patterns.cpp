@@ -13,7 +13,7 @@ void DefaultPattern(){
   NeoPixel_Chain.clear();
   NeoPixel_Chain.show();
 
-  lightStrand(0);
+  // lightStrand(0);
 }
 
 // A basic light
@@ -23,7 +23,7 @@ void Pattern1() {
     lightPixel(i, 255, 150, 50, 255);
   }
 
-  lightStrand(255);
+  // lightStrand(255);
 
   while (!buttonInterrupt){
     if (buttonInterrupt) {
@@ -37,8 +37,8 @@ void Pattern1() {
 // ======== Pattern 2 ========
 // All pixels shift smoothly from red to green to blue to red
 void Pattern2() {
-  // Turn on strand light
-  lightStrand(255);
+  // // Turn on strand light
+  // lightStrand(255);
   
   Serial.println("Beginning Pattern2!");
 

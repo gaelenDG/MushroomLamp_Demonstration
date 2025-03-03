@@ -4,6 +4,7 @@
 #include "config.h"
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include <cmath>
 
 // ======== Helper Functions ========
 
@@ -103,13 +104,13 @@ void setPattern() {
   }
 }
 
-/*
- * Sets the brightness of the LED strand using PWM.
- * @param PWM A value between 0 (off) and 255 (full brightness)
- */
-void lightStrand(int PWM) {
-  ledcWrite(LEDC_CHANNEL, PWM);  // Apply PWM value to LED strand
-}
+// /*
+//  * Sets the brightness of the LED strand using PWM.
+//  * @param PWM A value between 0 (off) and 255 (full brightness)
+//  */
+// void lightStrand(int PWM) {
+//   ledcWrite(LEDC_CHANNEL, PWM);  // Apply PWM value to LED strand
+// }
 
 /*
  * Lights up a specific NeoPixel at a given position with a specified color.
@@ -123,13 +124,22 @@ void lightStrand(int PWM) {
 
 void lightPixel(int position, int Red, int Green, int Blue, int White) {
 
+  // read Potentiometer, save value
+  int potValue = analogRead(POT);
+
+  // Scale each color value by
+  int ScaledRed = std::round(Red * (potValue / 4095.0));
+  int ScaledGreen = std::round(Green * (potValue / 4095.0));
+  int ScaledBlue = std::round(Blue * (potValue / 4095.0));
+  int ScaledWhite = std::round(White * (potValue / 4095.0));
+
   // Determine which chain and pixel to light up
   Adafruit_NeoPixel* chain = nullptr; // Pointer to the correct chain, once determined
   uint32_t color = 0;  // Store the calculated color
 
   chain = &NeoPixel_Chain;
 
-  color = chain->Color(Red, Green, Blue, White); // RGB pixel color assignment
+  color = chain->Color(ScaledRed, ScaledGreen, ScaledBlue, ScaledWhite); // RGB pixel color assignment
 
   chain->setPixelColor(position, color);
 
