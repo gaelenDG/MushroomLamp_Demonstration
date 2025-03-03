@@ -125,7 +125,7 @@ void setPattern() {
 void lightPixel(int position, int Red, int Green, int Blue, int White) {
 
   // read Potentiometer, save value
-  int potValue = analogRead(POT);
+  int potValue = analogRead(POT) + 2048;
 
   // Scale each color value by
   int ScaledRed = std::round(Red * (potValue / 4095.0));

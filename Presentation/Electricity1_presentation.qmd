@@ -1,0 +1,56 @@
+---
+title: Electricity part 1
+subtitle: Probably more electrical engineering than you asked for ¯|_(ツ)_/¯
+author: Gaelen Guzman
+date: 2/27/25
+
+format:
+  revealjs:
+    css: style.css
+    slide-number: true
+    mainfont: Charter
+    theme: sky
+    chalkboard: 
+      buttons: true
+    auto-stretch: false
+    default-image-extension: png
+    fig-align: center
+---
+
+# What is electricity??
+
+## Electricity is the movement of charged particles
+
+::::columns
+
+::: {.column width="45%"}
+
+:::{.fragment .fade-in fragment-index="1"}
+:::{.fragment .semi-fade-out fragment-index="3"}
+Electrons moving along a metal pathway
+:::
+:::
+
+:::{.fragment .fade-down fragment-index="3"}
+The water analogy
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::r-stack
+:::{.fragment .fade-in-then-out fragment-index="2"}
+(A picture of electrons in a metal wire)
+:::
+
+:::{.fragment .fade-down fragment-index="4"}
+(A drawing of water flowing downhill)
+:::
+:::
+
+:::
+::::
+
+# What is a circuit??
+

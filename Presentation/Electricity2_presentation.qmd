@@ -1,0 +1,202 @@
+---
+title: Electricity part 2
+subtitle: Probably more electrical engineering than you asked for ¯|_(ツ)_/¯
+author: Gaelen Guzman
+date: 2/27/25
+
+format:
+  revealjs:
+    css: style.css
+    slide-number: true
+    mainfont: Charter
+    theme: sky
+    chalkboard: 
+      buttons: true
+    auto-stretch: false
+    default-image-extension: png
+    fig-align: center
+---
+
+# Today:
+
+* Review what we talked about last time
+* Use a computer to control a circuit
+* Talk about how I made the mushroom lamp
+* Brainstorm cool projects!
+
+# Quick review
+
+## What is an electric circuit?
+
+:::{.incremental}
+* Voltage
+* Current
+* Resistance
+:::
+
+## Lights!
+
+:::{.incremental}
+* Incandescent
+* LED
+:::
+
+## Resistors
+
+
+
+# You can use a computer to control a circuit
+
+## Example 1: A blinking LED
+
+```{.cpp}
+
+// Tell the computer where the LED is
+#define LED_PIN 5 // The LED is on pin "5"
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_PIN, OUTPUT);
+
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (voltage HIGH)
+  delay(1000);                      // wait for 1 second
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off (voltage LOW)
+  delay(1000); 
+                       // wait for 1 second
+}
+```
+
+## Example 2: Use a button to control an LED
+
+```{.cpp}
+
+// Tell the computer where the button and the LED are.
+#define BUTTON_PIN 0  // The button is on pin "0"
+#define LED_PIN 5     // The LED is on pin "5"
+
+// Setup runs when the computer turns on
+void setup() {
+
+  // Tell the computer what to do with the button and LED
+  pinMode(BUTTON_PIN, INPUT);  // Button with pull-up
+  pinMode(LED_PIN, OUTPUT);    // LED for feedback
+
+  digitalWrite(LED_PIN, LOW);  // Start with LED off
+
+}
+
+// the loop function runs over and over again forever
+void loop() {
+
+  // If the Button is pressed, turn LED on
+  if (digitalRead(BUTTON_PIN) == HIGH) {  
+    digitalWrite(LED_PIN, HIGH);   // Turn LED on
+  }
+  // If the Button is NOT pressed, turn LED off
+  if (digitalRead(BUTTON_PIN) == LOW) {
+    digitalWrite(LED_PIN, LOW)     // Turn LED off
+  }
+
+}
+```
+
+## Example 3: Use a potentiometer to control an LED's brightness
+
+```{.cpp}
+
+// Tell the computer where the potentiometer and LED are
+#define Potentiometer_Pin 3 // The potentiometer is on pin "3"
+#define LED_PIN 5 // The LED is on pin "5"
+
+// Some information to help the computer make the LED's brightness adjustable 
+const int LEDC_CHANNEL = 0;     // Use PWM channel 0
+const int LEDC_TIMER_BIT = 8;   // 8-bit resolution (0-255)
+const int LEDC_BASE_FREQ = 5000; // 5 kHz frequency
+
+// Run the startup instructions for the computer
+void setup() {
+
+  // Tell the computer what to do with the LED
+  ledcSetup(LEDC_CHANNEL, LEDC_BASE_FREQ, LEDC_TIMER_BIT);
+  ledcAttachPin(LED_PIN, LEDC_CHANNEL);
+
+  // Apply a brightness of "0" to the LED to start
+  ledcWrite(LEDC_CHANNEL, 0);  // Apply PWM value to LED strand
+
+}
+
+// Instructions to repeat over and over
+void loop() {
+
+  // read the value from the potentiometer:
+  potValue = analogRead(Potentiometer_Pin);
+
+  // Convert the value from the potentiometer to a number between 0-255
+  LEDbrightness = map(abs(potValue), 0, 4095, 0, 255)
+
+  // Turn on the LED at the new brightness level 
+  ledcWrite(LEDC_CHANNEL, LEDbrightness); 
+
+  // Wait for a little bit to smooth out the light
+  delay(200);
+}
+```
+
+# How does this mushroom lamp work?
+
+## The main components of the mushroom lamp
+
+::: columns
+::: {.column width="45%"}
+::: {.fragment .fade-right fragment-index="1"}
+1.  A piece of bark
+:::
+
+::: {.fragment .fade-right fragment-index="2"}
+2.  Silicone sealant
+:::
+
+::: {.fragment .fade-right fragment-index="3"}
+3.  Red-Green-Blue LEDs
+:::
+
+::: {.fragment .fade-right}
+4.  An ESP-32 microcontroller (small computer)
+:::
+
+::: {.fragment .fade-right fragment-index="4"}
+5. A level shifter and some resistors to control the LEDs
+:::
+:::
+
+::: {.column width="55%"}
+::: r-stack
+::: {.fragment .fade-in-then-out fragment-index="1"}
+(Need a pic of some bark)
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="2"}
+![](/Pictures/Silicone_pic.png)
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="3"}
+![](/Pictures/NeoPixel_pic.png)
+:::
+
+::: {.fragment .fade-in-then-out fragment-index="4"}
+![](/Pictures/ESP32_pic.png)
+:::
+
+:::{.fragment .fade-in fragment-index="5"}
+(Need a pic of the level shifter)
+:::
+
+:::
+:::
+:::
+

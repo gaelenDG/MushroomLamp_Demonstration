@@ -22,7 +22,7 @@ void setup() {
 
   // Initializing the status light, will start with a green light
   StatusLight.begin();
-  StatusLight.setPixelColor(0, StatusLight.Color(10, 10, 0)); // Dim yellow light for boot verification (GRB)
+  StatusLight.setPixelColor(0, StatusLight.Color(2, 2, 0)); // Dim yellow light for boot verification (GRB)
   StatusLight.show(); 
 
   NeoPixel_Chain.begin();
